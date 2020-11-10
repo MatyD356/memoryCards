@@ -19,11 +19,29 @@ const countries = [
 
 const Main = () => {
   const [rendered, setRendered] = useState([])
+  const [clicked, setClicked] = useState([])
+  const [maxScore, setMaxScore] = useState(0)
+
+  //render effect
   useEffect(() => {
     if (rendered.length < 8) {
       rendererEightFlags(rendered)
     }
   })
+
+  //smelling bad here
+  const addToClicked = (id) => {
+    const check = clicked.filter(item => item === id)
+    if (check.length > 0) {
+      setClicked([])
+      alert('you lose')
+      if (clicked.length > maxScore) {
+        setMaxScore(clicked.length)
+      }
+    } else {
+      setClicked([...clicked, id])
+    }
+  }
 
   const chceckForDuplicates = (renderedArr, num) => {
     const duplicates = renderedArr.filter(item => item.id === num)
@@ -58,10 +76,13 @@ const Main = () => {
   }
   return (
     <main className='container'>
-      <Scores />
+      <Scores
+        current={clicked.length}
+        maxScore={maxScore} />
       <div className='row'>
         {rendered.map((item, index) =>
           <Card
+            addToClicked={addToClicked}
             index={index}
             rendered={rendered}
             remove={deleteFromRendered}

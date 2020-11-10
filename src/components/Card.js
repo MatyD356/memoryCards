@@ -1,7 +1,12 @@
 
-const Card = ({ id, name, index, remove, rendered }) => {
+const Card = ({ id, name, index, remove, rendered, addToClicked }) => {
   return (
-    <div className="card m-2" onClick={() => remove(index, rendered)}>
+    <div className="card m-2"
+      onClick={() => {
+        remove(index, rendered)
+        addToClicked(id)
+      }}
+    >
       <img
         className="card-img-top"
         src={`https://flagcdn.com/256x192/${id}.png`}
