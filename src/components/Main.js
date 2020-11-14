@@ -1,7 +1,7 @@
-import Card from './Card'
 import { useState, useEffect } from 'react'
 
 import Scores from './Scores'
+import CardContainer from './CardContainer'
 const countries = [
   { id: 'us', name: 'United States' },
   { id: 'gb', name: 'United Kingdom' },
@@ -24,7 +24,7 @@ const Main = () => {
 
   //render effect
   useEffect(() => {
-    if (rendered.length < 8) {
+    if (rendered.length < 9) {
       rendererEightFlags(rendered)
     }
   })
@@ -55,15 +55,10 @@ const Main = () => {
     }
     return randomNum
   }
-  //function to run game on easy mode
-  const addOneToRendered = (renderedArr) => {
-    const num = randomizeUniqueNum(renderedArr);
-    setRendered([...renderedArr, { id: num, content: countries[num] }])
-  }
   //function to run game on hard mode
   const rendererEightFlags = (renderedArr) => {
     let arr = []
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 9; i++) {
       const num = randomizeUniqueNum(arr)
       arr.push({ id: num, content: countries[num] })
     }
@@ -74,22 +69,11 @@ const Main = () => {
     const arr = [...arrToDeleteFrom]
     setRendered(arr.filter(item => arrToDeleteFrom.indexOf(item) !== index))
   }
+
   return (
-    <main className='container'>
-      <Scores
-        current={clicked.length}
-        maxScore={maxScore} />
-      <div className='row'>
-        {rendered.map((item, index) =>
-          <Card
-            addToClicked={addToClicked}
-            index={index}
-            rendered={rendered}
-            remove={deleteFromRendered}
-            key={index}
-            id={item.content.id}
-            name={item.content.name} />)}
-      </div>
+    <main className='col-12' aria-label='main'>
+      <Scores current={clicked.length} maxScore={maxScore} />
+      <CardContainer addToClicked={addToClicked} rendered={rendered} deleteFromRendered={deleteFromRendered} />
     </main>
   )
 }

@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from '@testing-library/react'
 import Main from '../components/Main';
 
 it('renders Main wihout crash', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Main />, div)
+  const container = render(<Main />)
+  const main = container.getByLabelText('main')
+  expect(main).toBeInTheDocument()
 });

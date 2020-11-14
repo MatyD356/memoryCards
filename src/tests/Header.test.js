@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from '@testing-library/react'
 import Header from '../components/Header';
 
 it('renders Header wihout crash', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Header />, div)
+  const container = render(<Header />)
+  const header = container.getByLabelText('header')
+  expect(header).toBeInTheDocument()
 });

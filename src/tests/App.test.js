@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from '@testing-library/react'
 import App from '../components/App';
 
 it('renders App wihout crash', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div)
-});
+  const container = render(<App />)
+  const app = container.getByLabelText('app')
+  expect(app).toBeInTheDocument()
+})

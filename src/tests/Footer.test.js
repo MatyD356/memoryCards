@@ -1,8 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import Footer from '../components/Header';
+import { render } from '@testing-library/react'
+import Footer from '../components/Footer';
 
 it('renders Footer wihout crash', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Footer />, div)
+  const container = render(<Footer />)
+  const footer = container.getByLabelText('footer')
+  expect(footer).toBeInTheDocument()
 });

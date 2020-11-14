@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 const App = () => {
   return (
-    <div className='container h-100'>
+    <div className='container vh-100' aria-label='app'>
       <Header />
       <Main />
       <Footer />
