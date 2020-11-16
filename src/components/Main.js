@@ -71,7 +71,7 @@ const Main = () => {
   }
 
   return (
-    <main className='col-12' aria-label='main'>
+    <main aria-label='main'>
       <Scores current={clicked.length} maxScore={maxScore} />
       <CardContainer addToClicked={addToClicked} rendered={rendered} deleteFromRendered={deleteFromRendered} />
     </main>

@@ -5,10 +5,12 @@ import Footer from './Footer'
 
 const App = () => {
   return (
-    <div className='container vh-100' aria-label='app'>
+    <div className='container-fluid bg-light' aria-label='app'>
       <Header />
-      <Main />
-      <Footer />
+      <div className='container'>
+        <Main />
+        <Footer />
+      </div>
     </div>
   );
 }

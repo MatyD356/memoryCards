@@ -2,7 +2,7 @@ import Card from './Card'
 
 const CardContainer = ({ addToClicked, rendered, deleteFromRendered }) => {
 
-  return (<div className='col-12' aria-label='card-container' >
+  return (<div className='d-flex flex-wrap justify-content-center' aria-label='card-container' >
     { rendered
       ? rendered.map((item, index) =>
         <Card
